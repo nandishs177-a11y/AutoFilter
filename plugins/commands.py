@@ -32,58 +32,18 @@ TIMEZONE = "Asia/Kolkata"
 BATCH_FILES = {}
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
-
-    # ✅ Handle file links
-    if len(message.command) > 1:
-        data = message.command[1]
-    if "_" in data:
-        ident, file_id = data.split("_", 1)
-    else:
-        file_id = data
-        
-        try:
-            await client.get_chat_member(AUTH_CHANNEL, message.from_user.id)
-
-        except UserNotParticipant:
-            buttons = [[
-                InlineKeyboardButton("📢 Join Channel", url="https://t.me/dailyhubdeal")
-            ],[
-                InlineKeyboardButton("✅ Try Again", url=f"https://t.me/{temp.U_NAME}?start={file_id}")
-            ]]
-
-            await message.reply(
-                "⚠️ You must join our channel before using this bot.",
-                reply_markup=InlineKeyboardMarkup(buttons)
-            )
-            return
-
-        await client.send_cached_media(
-            chat_id=message.from_user.id,
-            file_id=file_id
-        )
-        return
-
-    # 🔹 Reaction
-    if EMOJI_MODE:
-        await message.react(emoji=random.choice(REACTIONS), big=True)
-
-    # 🔹 Group Message
+    if EMOJI_MODE:    
+        await message.react(emoji=random.choice(REACTIONS), big=True) 
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-
         buttons = [[
-            InlineKeyboardButton('• ᴀᴅᴅ ᴍᴇ ᴛᴏ ᴜʀ ᴄʜᴀᴛ •', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-        ],[
-            InlineKeyboardButton('• ᴀᴅᴍɪɴ •', url="https://t.me/cosmic_freak"),
-            InlineKeyboardButton('• sᴜᴘᴘᴏʀᴛ •', url="https://t.me/codeflixsupport")
-        ],[
-            InlineKeyboardButton('• ᴜᴘᴅᴀᴛᴇs •', url="https://t.me/codeflix_bots")
-        ]]
-
-        await message.reply_text(
-            "Add me to your group.",
-            reply_markup=InlineKeyboardMarkup(buttons)
-)
-
+                    InlineKeyboardButton('• ᴀᴅᴅ ᴍᴇ ᴛᴏ ᴜʀ ᴄʜᴀᴛ •', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+                ],[
+                    InlineKeyboardButton('• ᴍᴀsᴛᴇʀ •', url="https://t.me/cosmic_freak"),
+                    InlineKeyboardButton('• sᴜᴘᴘᴏʀᴛ •', url='https://t.me/codeflixsupport')
+                ],[
+                    InlineKeyboardButton('• ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ •', url="https://t.me/codeflix_bots")
+                  ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_text(
             "ʜᴇʏ! ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴛᴏ ɢᴇᴛ ᴍᴏᴠɪᴇs 🎬",
             reply_markup=InlineKeyboardMarkup(buttons)
