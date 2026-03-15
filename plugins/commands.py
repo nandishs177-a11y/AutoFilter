@@ -34,8 +34,7 @@ BATCH_FILES = {}
 async def start(client, message):
 
     # ✅ Handle file links
-    if len(message.command) > 1:
-        
+if len(message.command) > 1:
     data = message.command[1]
     if "_" in data:
         ident, file_id = data.split("_", 1)
