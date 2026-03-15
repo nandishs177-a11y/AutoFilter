@@ -33,9 +33,31 @@ BATCH_FILES = {}
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
 
+    # ✅ Handle file links
+    if len(message.command) > 1:
+        file_id = message.command[1]
+
+        try:
+            await client.get_chat_member(AUTH_CHANNEL, message.from_user.id)
+        except UserNotParticipant:
+            buttons = [[InlineKeyboardButton("📢 Join Channel", url="https://t.me/dailyhubdeal")]]
+            await message.reply(
+                "⚠️ You must join our channel before using this bot.",
+                reply_markup=InlineKeyboardMarkup(buttons)
+            )
+            return
+
+        await client.send_cached_media(
+            chat_id=message.from_user.id,
+            file_id=file_id
+        )
+        return
+
+    # 🔹 Reaction
     if EMOJI_MODE:
         await message.react(emoji=random.choice(REACTIONS), big=True)
 
+    # 🔹 Group Message
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
 
         buttons = [[
@@ -46,6 +68,11 @@ async def start(client, message):
         ],[
             InlineKeyboardButton('• ᴜᴘᴅᴀᴛᴇs •', url="https://t.me/codeflix_bots")
         ]]
+
+        await message.reply_text(
+            "Add me to your group.",
+            reply_markup=InlineKeyboardMarkup(buttons)
+)
 
         await message.reply_text(
             "ʜᴇʏ! ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴛᴏ ɢᴇᴛ ᴍᴏᴠɪᴇs 🎬",
