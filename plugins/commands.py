@@ -46,7 +46,7 @@ async def start(client, message):
             buttons = [[
                 InlineKeyboardButton("📢 Join Channel", url="https://t.me/dailyhubdeal")
             ],[
-                InlineKeyboardButton("✅ Try Again", url=f"https://t.me/{temp.U_NAME}?start={data}")
+                InlineKeyboardButton("✅ Try Again", url=f"https://t.me/KNMoviesfilesharebot?start={data}")
             ]]
 
             await message.reply_text(
