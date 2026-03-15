@@ -35,8 +35,14 @@ async def start(client, message):
 
     # ✅ Handle file links
     if len(message.command) > 1:
-        file_id = message.command[1]
 
+    data = message.command[1]
+
+    if "_" in data:
+        ident, file_id = data.split("_", 1)
+    else:
+        file_id = data
+        
         try:
             await client.get_chat_member(AUTH_CHANNEL, message.from_user.id)
 
