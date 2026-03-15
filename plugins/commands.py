@@ -33,35 +33,6 @@ BATCH_FILES = {}
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
 
-    # ✅ HANDLE FILE LINK START
-    if len(message.command) > 1:
-
-        data = message.command[1]
-
-        try:
-            await client.get_chat_member(AUTH_CHANNEL, message.from_user.id)
-
-        except UserNotParticipant:
-
-            buttons = [[
-                InlineKeyboardButton("📢 Join Channel", url="https://t.me/dailyhubdeal")
-            ],[
-                InlineKeyboardButton("✅ Try Again", url=f"https://t.me/KNMoviesfilesharebot?start={data}")
-            ]]
-
-            await message.reply_text(
-                "⚠️ You must join our channel to get the file.",
-                reply_markup=InlineKeyboardMarkup(buttons)
-            )
-            return
-
-        file_id = data.replace("file_", "")
-
-        await client.send_cached_media(
-            chat_id=message.from_user.id,
-            file_id=file_id
-        )
-        return
     if EMOJI_MODE:    
         await message.react(emoji=random.choice(REACTIONS), big=True) 
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
