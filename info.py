@@ -33,7 +33,7 @@ NOR_IMG = environ.get("NOR_IMG", "https://envs.sh/Wdj.jpg")
 MELCOW_VID = environ.get("MELCOW_VID", "https://envs.sh/Wdj.jpg")
 SPELL_IMG = environ.get("SPELL_IMG", "https://envs.sh/Wdj.jpg")
 SUBSCRIPTION = (environ.get('SUBSCRIPTION', 'https://envs.sh/Wdj.jpg'))
-FSUB_PICS = (environ.get('FSUB_PICS', '')).split()  # Fsub pic
+FSUB_PICS = (environ.get('FSUB_PICS', 'https://i.ibb.co/q3T9NWjT/1296482719-28590.jpg')).split()  # Fsub pic
 
 # ============================
 # Admin, Channels & Users Configuration
@@ -99,9 +99,9 @@ IS_TUTORIAL = bool(environ.get('IS_TUTORIAL', False))
 # ============================
 # Channel & Group Links Configuration
 # ============================
-GRP_LNK = environ.get('GRP_LNK', 'https://t.me/movie7xchat')
-CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/nova_flix')
-OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/cosmic_freak')
+GRP_LNK = environ.get('GRP_LNK', 'https://t.me/KNMoviesHub17')
+CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/KNMoviesHub17')
+OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/Nandi177')
 MOVIE_UPDATE_CHANNEL_LNK = environ.get('MOVIE_UPDATE_CHANNEL_LNK', 'https://t.me/KNMoviesHub17')
 OWNERID = int(os.environ.get('OWNERID', '1296482719'))  # Replace with the actual admin ID
 
