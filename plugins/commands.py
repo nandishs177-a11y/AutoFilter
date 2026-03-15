@@ -39,8 +39,14 @@ async def start(client, message):
 
         try:
             await client.get_chat_member(AUTH_CHANNEL, message.from_user.id)
+
         except UserNotParticipant:
-            buttons = [[InlineKeyboardButton("📢 Join Channel", url="https://t.me/dailyhubdeal")]]
+            buttons = [[
+                InlineKeyboardButton("📢 Join Channel", url="https://t.me/dailyhubdeal")
+            ],[
+                InlineKeyboardButton("✅ Try Again", url=f"https://t.me/{temp.U_NAME}?start={file_id}")
+            ]]
+
             await message.reply(
                 "⚠️ You must join our channel before using this bot.",
                 reply_markup=InlineKeyboardMarkup(buttons)
