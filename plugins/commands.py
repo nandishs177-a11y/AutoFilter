@@ -7,6 +7,8 @@ import random
 import asyncio
 import time
 import pytz
+from pyrogram.errors import UserNotParticipant
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from database.verify_db import vr_db
 from .pmfilter import auto_filter 
 from Script import script
@@ -31,17 +33,38 @@ BATCH_FILES = {}
 
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
-    if EMOJI_MODE:    
-        await message.react(emoji=random.choice(REACTIONS), big=True) 
+
+    try:
+        await client.get_chat_member(AUTH_CHANNEL, message.from_user.id)
+
+    except UserNotParticipant:
+        buttons = [[InlineKeyboardButton("📢 Join Channel", url="https://t.me/dailyhubdeal")]]
+
+        await message.reply(
+            "⚠️ You must join our channel before using this bot.",
+            reply_markup=InlineKeyboardMarkup(buttons)
+        )
+        return
+        
+    if EMOJI_MODE:
+        await message.react(emoji=random.choice(REACTIONS), big=True)
+
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+
         buttons = [[
-                    InlineKeyboardButton('• ᴀᴅᴅ ᴍᴇ ᴛᴏ ᴜʀ ᴄʜᴀᴛ •', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-                ],[
-                    InlineKeyboardButton('• ᴍᴀsᴛᴇʀ •', url="https://t.me/cosmic_freak"),
-                    InlineKeyboardButton('• sᴜᴘᴘᴏʀᴛ •', url='https://t.me/codeflixsupport')
-                ],[
-                    InlineKeyboardButton('• ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ •', url="https://t.me/codeflix_bots")
-                  ]]
+            InlineKeyboardButton('• ᴀᴅᴅ ᴍᴇ ᴛᴏ ᴜʀ ᴄʜᴀᴛ •', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+        ]]
+
+        await message.reply_text(
+            "Add me to your group.",
+            reply_markup=InlineKeyboardMarkup(buttons)
+        )
+
+    else:   # 👈 This is the private user block
+        await message.reply_text(
+            "👋 Welcome!\n\nSend me a movie name to search 🎬"
+        )
+        
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply(script.GSTART_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup, disable_web_page_preview=True)
         await asyncio.sleep(2) 
