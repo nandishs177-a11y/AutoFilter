@@ -82,17 +82,17 @@ CAPTION_LANGUAGES = ["Bhojpuri", "Hindi", "Bengali", "Tamil", "English", "Bangla
 # ============================
 # Verification Settings
 # ============================
-VERIFY = bool(environ.get('VERIFY', False))  # Verification On (True) / Off (False)
-VERIFY_EXPIRE = int(environ.get('VERIFY_EXPIRE', 24))  # Add time in hours
+VERIFY = bool(environ.get('VERIFY', True)  # Verification On (True) / Off (False)
+VERIFY_EXPIRE = int(environ.get('VERIFY_EXPIRE', 12))  # Add time in hours
 VERIFIED_LOG = int(environ.get('VERIFIED_LOG', '-1003800962005'))  # Log channel id (make sure bot is admin)
 HOW_TO_VERIFY = environ.get('HOW_TO_VERIFY', 'https://t.me/How_to_Download_7x/30')  # How to open tutorial link for verification
 
 # ============================
 # Link Shortener Configuration
 # ============================
-IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', False))
-SHORTLINK_URL = environ.get('SHORTLINK_URL', 'inshorturl.com')
-SHORTLINK_API = environ.get('SHORTLINK_API', '')
+IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', True))
+SHORTLINK_URL = environ.get('SHORTLINK_URL', 'gplinks.com')
+SHORTLINK_API = environ.get('SHORTLINK_API', 'c1b32d25a37d181f117464d8a9ca962162229732')
 TUTORIAL = environ.get('TUTORIAL', 'https://t.me/How_to_Download_7x/30')  # Tutorial video link for opening shortlink website
 IS_TUTORIAL = bool(environ.get('IS_TUTORIAL', False))
 
