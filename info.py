@@ -83,7 +83,7 @@ CAPTION_LANGUAGES = ["Bhojpuri", "Hindi", "Bengali", "Tamil", "English", "Bangla
 # Verification Settings
 # ============================
 # Verification On (True) / Off (False)
-VERIFY = environ.get('VERIFY', 'False') == 'True'
+VERIFY = environ.get('VERIFY', 'True') == 'True'
 VERIFY_EXPIRE = int(environ.get('VERIFY_EXPIRE', 1))  # Add time in hours
 VERIFIED_LOG = int(environ.get('VERIFIED_LOG', '-1003800962005'))  # Log channel id (make sure bot is admin)
 HOW_TO_VERIFY = environ.get('HOW_TO_VERIFY', 'https://t.me/KNMoviesdiscussion/17')  # How to open tutorial link for verification
