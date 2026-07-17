@@ -68,6 +68,7 @@ APPROVED = environ.get("APPROVED_WELCOME", "on").lower()
 # MongoDB Configuration
 # ============================
 DATABASE_URI = environ.get('DATABASE_URI', "mongodb://nandishs177_db_user:Nandishs17@ac-rm8h8wp-shard-00-00.mqvhjgv.mongodb.net:27017,ac-rm8h8wp-shard-00-01.mqvhjgv.mongodb.net:27017,ac-rm8h8wp-shard-00-02.mqvhjgv.mongodb.net:27017/?ssl=true&replicaSet=atlas-kmzupv-shard-0&authSource=admin&appName=Cluster0")
+DATABASE_URI2 = environ.get("DATABASE_URI2")
 DATABASE_NAME = environ.get('DATABASE_NAME', "autofilter")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
