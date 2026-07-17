@@ -61,7 +61,6 @@ async def Lucy_start():
     temp.BANNED_USERS = b_users
     temp.BANNED_CHATS = b_chats
     await Media.ensure_indexes()
-    await Media2.ensure_indexes()
     stats = await clientDB.command('dbStats')
     free_dbSize = round(512-((stats['dataSize']/(1024*1024))+(stats['indexSize']/(1024*1024))), 2)
     if DATABASE_URI2 and free_dbSize<62: #if the primary db have less than 62MB left, use second DB.
