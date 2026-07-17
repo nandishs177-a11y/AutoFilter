@@ -197,7 +197,6 @@ async def get_file_details(query):
     return await cursor.to_list(length=1) 
     
 async def get_bad_files(query, file_type=None, filter=False):
-async def get_bad_files(query, file_type=None, filter=False):
     """For given query return (results, next_offset)"""
     query = query.strip()
 
