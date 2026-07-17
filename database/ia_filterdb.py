@@ -197,15 +197,17 @@ async def get_file_details(query):
     return await cursor.to_list(length=1) 
     
 async def get_bad_files(query, file_type=None, filter=False):
+async def get_bad_files(query, file_type=None, filter=False):
     """For given query return (results, next_offset)"""
     query = query.strip()
+
     if not query:
         raw_pattern = '.'
     elif ' ' not in query:
         raw_pattern = r'(\b|[\.\+\-_])' + query + r'(\b|[\.\+\-_])'
     else:
         raw_pattern = query.replace(' ', r'.*[\s\.\+\-_()]')
-    
+
     try:
         regex = re.compile(raw_pattern, flags=re.IGNORECASE)
     except:
@@ -216,19 +218,19 @@ async def get_bad_files(query, file_type=None, filter=False):
     else:
         filter = {'file_name': regex}
 
-if file_type:
-    filter['file_type'] = file_type
+    if file_type:
+        filter['file_type'] = file_type
 
-cursor = Media.find(filter)
+    cursor = Media.find(filter)
+    cursor.sort('$natural', -1)
 
-cursor.sort('$natural', -1)
+    files = await cursor.to_list(
+        length=(await Media.count_documents(filter))
+    )
 
-files = await cursor.to_list(length=(await Media.count_documents(filter)))
+    total_results = len(files)
 
-total_results = len(files)
-
-return files, total_results
-
+    return files, total_results
 async def get_file_details(query):
     filter = {'file_id': query}
     cursor = Media.find(filter)
