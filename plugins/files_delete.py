@@ -38,14 +38,7 @@ async def deletemultiplemedia(bot, message):
             'file_size': media.file_size,
             'mime_type': media.mime_type
             })
-        if result.deleted_count:
-            logger.info('File is successfully deleted from database.')
-        else:
-            result = await Media.collection.delete_many({
-                'file_name': file_name,
-                'file_size': media.file_size,
-                'mime_type': media.mime_type
-                })
+    
             if result.deleted_count:
                 logger.info('File is successfully deleted from database.')
             else:
@@ -54,14 +47,7 @@ async def deletemultiplemedia(bot, message):
                     'file_size': media.file_size,
                     'mime_type': media.mime_type
                 })
-                if result.deleted_count:
-                    logger.info('File is successfully deleted from database.')
-                else:
-                    result = await Media.collection.delete_many({
-                        'file_name': media.file_name,
-                        'file_size': media.file_size,
-                        'mime_type': media.mime_type
-                    })
+            
                     if result.deleted_count:
                         logger.info('File is successfully deleted from database.')
                     else:
