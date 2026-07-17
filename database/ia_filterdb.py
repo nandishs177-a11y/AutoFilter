@@ -216,30 +216,24 @@ async def get_bad_files(query, file_type=None, filter=False):
     else:
         filter = {'file_name': regex}
 
-    if file_type:
-        filter['file_type'] = file_type
+if file_type:
+    filter['file_type'] = file_type
 
-    cursor = Media.find(filter)
-    cursor2 = Media2.find(filter)
+cursor = Media.find(filter)
 
-    cursor.sort('$natural', -1)
-    cursor2.sort('$natural', -1)
+cursor.sort('$natural', -1)
 
-    files = ((await cursor2.to_list(length=(await Media2.count_documents(filter))))+(await cursor.to_list(length=(await Media.count_documents(filter)))))
+files = await cursor.to_list(length=(await Media.count_documents(filter)))
 
-    total_results = len(files)
+total_results = len(files)
 
-    return files, total_results
+return files, total_results
 
 async def get_file_details(query):
     filter = {'file_id': query}
     cursor = Media.find(filter)
     filedetails = await cursor.to_list(length=1)
-    if not filedetails:
-        cursor2 = Media2.find(filter)
-        filedetails = await cursor2.to_list(length=1)
     return filedetails
-
 
 def encode_file_id(s: bytes) -> str:
     r = b""
