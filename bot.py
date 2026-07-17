@@ -12,7 +12,7 @@ from datetime import date, datetime
 import pytz
 from aiohttp import web
 
-from database.ia_filterdb import Media, Media2, choose_mediaDB, tempDict, db as clientDB
+from database.ia_filterdb import Media, choose_mediaDB, tempDict, db as clientDB
 from database.users_chats_db import db
 from info import *
 from utils import temp
