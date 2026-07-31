@@ -92,8 +92,8 @@ HOW_TO_VERIFY = environ.get('HOW_TO_VERIFY', 'https://t.me/KNMoviesdiscussion/38
 # Link Shortener Configuration
 # ============================
 IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', False))
-SHORTLINK_URL = environ.get('SHORTLINK_URL', 'easysky.in')
-SHORTLINK_API = environ.get('SHORTLINK_API', 'd951b20bd4a9352a81b1f653a41edb9f03038eaa')
+SHORTLINK_URL = environ.get('SHORTLINK_URL', 'ShrinkMe.io')
+SHORTLINK_API = environ.get('SHORTLINK_API', '8c2af2d5a7a9074f9b0cc6bccffaa964f3927609')
 TUTORIAL = environ.get('TUTORIAL', 'https://t.me/How_to_Download_7x/30')  # Tutorial video link for opening shortlink website
 IS_TUTORIAL = bool(environ.get('IS_TUTORIAL', False))
 
